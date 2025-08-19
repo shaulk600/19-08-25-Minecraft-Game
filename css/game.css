@@ -1,0 +1,41 @@
+body {
+    width: 100vh;
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
+}
+
+#continer {
+    width: 4800px;
+    height: 1440px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-file, 3rem);
+    grid-template-rows: repeat(auto-file, 3rem);
+    background-color: #87ceeb;
+}
+
+.sky {
+    background-color: #87ceeb;
+}
+
+.trees {
+    background-image: url("../img/oak-log.webp");
+}
+
+.rocks {
+    background-image: url("../img/stone.webp");
+}
+
+.dirt {
+    /* graund */
+    background-image: url("../img/dirt.webp");
+}
+.grass {
+    /* Another option for dirt */
+    background-image: url("../img/grass.webp");
+}
+/* abyss - תהום */
+.abyss{
+    background-image: url("../img/bedrock.webp");
+}
