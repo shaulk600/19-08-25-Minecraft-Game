@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('../img/menu-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.containerH {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    width: 650px;
+    margin-bottom: 100px;
+}
