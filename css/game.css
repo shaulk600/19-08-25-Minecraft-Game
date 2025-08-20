@@ -36,3 +36,7 @@
 .shovel {
   background-image: url("../img/diamond-shovel.webp");
 }
+
+.square.highlight {
+  border: 1px solid black;
+}
