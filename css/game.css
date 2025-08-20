@@ -39,6 +39,16 @@ body {
     background-image: url("../img/bedrock.webp");
 }
 
+/* גזע עץ */
+.tree{ 
+    background-image: url("../img/bedrock.webp");
+}
+/* ענפים */
+.branches{
+    background-image: url("../img/bedrock.webp");
+}
+
+
 .toolbar {
   position: fixed;
   top: 20%;
