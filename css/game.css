@@ -77,8 +77,28 @@ body {
   background-image: url("../img/diamond-shovel.webp");
 }
 
-.square.highlight {
-  border: 1px solid black;
+.shears {
+    background-image: url("../img/shears.webp");
+}
+
+#container.axe-cursor {
+  cursor: url('../img/diamond-axe.png') 16 16, auto;
+}
+
+#container.pickaxe-cursor {
+  cursor: url('../img/diamond-pickaxe.png') 16 16, auto;
+}
+
+#container.shovel-cursor {
+  cursor: url('../img/diamond-shovel.png') 16 16, auto;
+}
+
+#container.shears-cursor {
+  cursor: url('../img/shears.png') 16 16, auto;
+}
+
+.sky.highlight {
+  border: 2px solid black;
 }
 
 
