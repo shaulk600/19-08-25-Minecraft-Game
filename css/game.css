@@ -103,3 +103,32 @@ body {
 }
 
 
+.savedPart {
+  position: fixed;
+  left: 10px;
+  top: 45%;
+
+  border: 2px solid rgb(10, 112, 12);
+  border-radius: 7px;
+  padding: 7px;
+  background-color:  rgb(68, 187, 70);
+  width: 70px;
+}
+
+.savedPart div{
+  display: flex;
+  align-items: center;
+  margin: 7px;
+}
+.savedPart img{
+  width: 45px;
+  height: 45px;
+  margin-right: 4px;
+
+}
+
+.savedPart .counter {
+  font-size: 18px;
+  font-family: 'Press Start 2P', monospace; 
+  color: white;
+}
