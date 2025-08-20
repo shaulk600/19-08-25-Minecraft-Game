@@ -18,6 +18,31 @@ body {
 }
 
 .logo {
-    width: 650px;
-    margin-bottom: 100px;
+    width: 700px;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn {
+    background-color: #A0A0A0;
+    border: 2px solid #707070;
+    border-radius: 4px;
+    color: white;
+    width: 400px;
+    height: 55px;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0px 3px 1px #707070;
+    margin: 0.5rem 0;
+}
+
+.btn:hover{
+    cursor: pointer;
 }
