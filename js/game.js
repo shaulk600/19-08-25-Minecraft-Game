@@ -9,11 +9,11 @@ The matrix is based on row numbers. when :
 */
 let numIndex = 0;
 const rows = 30;
-const columns = 100; 
+const columns = 100;
 // i=row
 for (let i = 0; i < rows; i++) {
     // j=column
-    for (let j = 0; j < columns; j++) { 
+    for (let j = 0; j < columns; j++) {
         const square = document.createElement("div");
         square.id = `square- row${i} column${j} num${numIndex}`;
 
@@ -38,3 +38,34 @@ for (let i = 0; i < rows; i++) {
 }
 
 
+
+
+
+const resources = {
+    grass: "grass", // קרקע
+    dirt: "dirt",  //אדמה
+    rocks: "rocks", // סלעים
+    leaves: "leaves", //עלים
+    race: "race" // גזע
+}
+const numResources = {
+    grass: 0,
+    dirt: 0,
+    rocks: 0,
+    leaves: 0,
+    race: 0
+}
+
+function addResources(resources) {
+    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
+        numResources.resources++;
+}
+function RemovingResources(resources) {
+    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
+        numResources.resources--;
+}
+
+function isClassPresent(event){ // event.torget
+    
+    
+}
