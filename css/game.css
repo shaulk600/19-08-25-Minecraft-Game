@@ -92,6 +92,10 @@ body {
     background-image: url("../img/shears.webp");
 }
 
+.cancel {
+  background-image: url("../img/red-x.png");
+}
+
 #container.axe-cursor {
   cursor: url('../img/diamond-axe.png') 16 16, auto;
 }
@@ -107,6 +111,7 @@ body {
 #container.shears-cursor {
   cursor: url('../img/shears.png') 16 16, auto;
 }
+
 
 .sky.highlight {
   border: 2px solid black;
