@@ -10,6 +10,11 @@ const toolMapping = {
 document.querySelectorAll(".tool").forEach((tool) => {
   tool.addEventListener("click", () => {
     activeTool = tool.classList[1];
+
+    document.querySelectorAll(".tool").forEach((t) => {
+      t.style.borderColor = "#333";
+      tool.style.borderColor = "gold";
+    });
   });
 });
 
@@ -17,10 +22,10 @@ document.querySelectorAll(".square").forEach((square) => {
   square.addEventListener("click", () => {
     if (!activeTool) return;
 
-    const squareType = square.classList[1]; 
+    const squareType = square.classList[1];
 
     if (toolMapping[activeTool] === squareType) {
-      square.remove(); 
-    } 
+      square.remove();
+    }
   });
 });
