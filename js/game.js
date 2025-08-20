@@ -1,32 +1,30 @@
-const continer = document.getElementById("continer");
 
+
+const container = document.getElementById("container");
 /*
 The matrix is based on row numbers. when :
 
 
 
 */
-let numRow = 0;
 let numIndex = 0;
-for (let i = 0; i < 30 * 100; i++) {
-    // i=row
-    const row = document.createElement("div");
-    const idRow = document.createAttribute("id");
-    id.value = `row-${numRow + 1}`;
-    numRow++;
-    for (let j = 0; j <= 100; j++) { //לולאה מקוננת פר שורה יצירת squere תהיה בפנים   
-        // j=column
+const rows = 30;
+const columns = 100; 
+// i=row
+for (let i = 0; i < rows; i++) {
+    // j=column
+    for (let j = 0; j < columns; j++) { 
         const square = document.createElement("div");
-        const id = document.createAttribute("id");
-        id.value = `square-${numIndex}`
+        square.id = `square- row${i} column${j} num${numIndex}`;
+
         if (i < 10) {
             square.classList.add("sky");
         }
         else if (i === 10) {
-            square.classList.add("sky", "dirt"); //אדמה
+            square.classList.add("sky", "grass"); //אדמה
         }
         else if (i > 10 && i < 15) {
-            square.classList.add("sky", "grass"); //אדמה 2 
+            square.classList.add("sky", "dirt"); //אדמה 2 
         }
         else if (i >= 15 && i < 28) {
             square.classList.add("sky", "rocks"); //אבן
@@ -34,11 +32,9 @@ for (let i = 0; i < 30 * 100; i++) {
         else if (i >= 28 && i < 30) {
             square.classList.add("sky", "abyss"); //תהום
         }
-        row.appendChild(square);
-
         numIndex++;
+        container.appendChild(square);
     }
-    continer.appendChild(row);
 }
 
 
