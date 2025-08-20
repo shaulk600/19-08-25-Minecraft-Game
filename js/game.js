@@ -1,0 +1,26 @@
+let activeTool = null;
+
+const toolMapping = {
+  axe: "tree", // גרזן: עצים
+  pickaxe: "rock", // מעדר: סלעים
+  shovel: "dirt", // את חפירה: אדמה
+  // shears: "branches" // מספריים: ענפים
+};
+
+document.querySelectorAll(".tool").forEach((tool) => {
+  tool.addEventListener("click", () => {
+    activeTool = tool.classList[1];
+  });
+});
+
+document.querySelectorAll(".square").forEach((square) => {
+  square.addEventListener("click", () => {
+    if (!activeTool) return;
+
+    const squareType = square.classList[1]; 
+
+    if (toolMapping[activeTool] === squareType) {
+      square.remove(); 
+    } 
+  });
+});
