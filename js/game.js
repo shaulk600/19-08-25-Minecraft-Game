@@ -4,9 +4,10 @@ const toolMapping = {
   axe: "tree", // גרזן: עצים
   pickaxe: "rock", // מעדר: סלעים
   shovel: "dirt", // את חפירה: אדמה
-  // shears: "branches" // מספריים: ענפים
+//   shears: "branches" // מספריים: ענפים
 };
 
+// בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
   tool.addEventListener("click", () => {
     activeTool = tool.classList[1];
@@ -18,6 +19,7 @@ document.querySelectorAll(".tool").forEach((tool) => {
   });
 });
 
+// הסרת משבצת באמצעות הכלי
 document.querySelectorAll(".square").forEach((square) => {
   square.addEventListener("click", () => {
     if (!activeTool) return;
