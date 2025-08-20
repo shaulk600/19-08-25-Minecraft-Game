@@ -50,6 +50,15 @@ const cursorMapping = {
 // בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
   tool.addEventListener("click", () => {
+    
+        if (tool.classList.contains("cancel")) {
+      activeTool = null;
+      container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+
+      document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
+      return; 
+    };
+    
     activeTool = tool.classList[1];
 
     document.querySelectorAll(".tool").forEach((tool) => {
