@@ -66,7 +66,7 @@ function isClassPresent(event) { // event.torget
 
 
 
-
+// mapping
 //variable tool
 let activeTool = null;
 
@@ -107,7 +107,7 @@ document.querySelectorAll(".sky").forEach((square) => {
     square.addEventListener("click", () => {
         if (!activeTool) return;
 
-        const squareType = square.classList[1];
+        const squareType = square.classList[1]; 
 
         if (toolMapping[activeTool].includes(squareType)) {
             square.classList.remove(squareType);
