@@ -39,23 +39,23 @@ const resources = {
     grass: "grass", // קרקע
     dirt: "dirt",  //אדמה
     rocks: "rocks", // סלעים
-    leaves: "leaves", //עלים
-    race: "race" // גזע
+    branches: "branches", //עלים
+    tree: "tree" // גזע
 }
 const numResources = {
     grass: 0,
     dirt: 0,
     rocks: 0,
-    leaves: 0,
-    race: 0
+    branches: 0,
+    tree: 0
 }
 
 function addResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
+    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "branches" || resources == "tree")
         numResources.resources++;
 }
 function RemovingResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
+    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "branches" || resources == "tree")
         numResources.resources--;
 }
 
