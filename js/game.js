@@ -37,32 +37,11 @@ for (let i = 0; i < rows; i++) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// "קליטת המשתנים מה"דיב"-"קאונטר
 const countGrass = document.getElementById("countGrass");
 const countDirt = document.getElementById("countDirt");
-const countRocks = document.getElementById("countRocks");
+const countRocks = document.getElementById("countRock");
 const countBranches = document.getElementById("countBranches");
 const countTree = document.getElementById("countTree");
-
-
-const resources = {
-    grass: "grass", // קרקע
-    dirt: "dirt",  //אדמה
-    rocks: "rocks", // סלעים
-    branches: "branches", //עלים
-    tree: "tree" // גזע
-}
 
 const numResources = {
     grass: 0,
@@ -70,26 +49,53 @@ const numResources = {
     rocks: 0,
     branches: 0,
     tree: 0
+};
+
+// עדכון הקאונטרים במסך
+function updateCounters() {
+    countGrass.textContent = numResources.grass;
+    countDirt.textContent = numResources.dirt;
+    countRocks.textContent = numResources.rocks;
+    countBranches.textContent = numResources.branches;
+    countTree.textContent = numResources.tree;
 }
 
-function addResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "branches" || resources == "tree")
-        numResources.resources++;
-}
-function RemovingResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "branches" || resources == "tree")
-        numResources.resources--;
-}
-
-function isClassPresent(event) { // event.torget
-
-
+// הוספה למשאבים
+function addResources(resource) {
+    if (numResources.hasOwnProperty(resource)) {
+        numResources[resource]++;
+        updateCounters();
+    }
 }
 
+// הורדה ממשאבים
+function removeResources(resource) {
+    if (numResources.hasOwnProperty(resource) && numResources[resource] > 0) {
+        numResources[resource]--;
+        updateCounters();
+    }
+}
+
+function isClassPresent(e) {
+    const square = e.target;
+    if (!square.classList.contains("sky")) return;
+
+    const squareType = square.classList[1];
+
+    if (!activeTool) return;
+
+    if (toolMapping[activeTool].includes(squareType)) {
+        square.classList.remove(squareType);
+        addResources(squareType);
+    } 
+
+}
+
+container.addEventListener("click", isClassPresent);
 
 
-// mapping
-//variable tool
+
+
 let activeTool = null;
 
 const toolMapping = {
@@ -108,9 +114,6 @@ const cursorMapping = {
 
 // בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
-
-
-
     tool.addEventListener("click", () => {
         // ביטול כלי (איקס אדום)
         if (tool.classList.contains("cancel")) {
@@ -123,7 +126,6 @@ document.querySelectorAll(".tool").forEach((tool) => {
         // בחירת כלי
         activeTool = tool.classList[1];
 
-
         document.querySelectorAll(".tool").forEach((t) => {
             t.style.borderColor = "#333";
         });
@@ -134,22 +136,6 @@ document.querySelectorAll(".tool").forEach((tool) => {
         container.classList.add(cursorMapping[activeTool]);
     });
 });
-
-// container -האזנה ל
-container.addEventListener("click", (e) => {
-    const square = e.target;
-    if (!square.classList.contains("sky")) return;
-
-    if (!activeTool) return;
-    const squareType = square.classList[1];
-
-
-    if (toolMapping[activeTool].includes(squareType)) {
-        square.classList.remove(squareType);
-    }
-});
-
-
 
 
 
@@ -168,4 +154,3 @@ container.addEventListener("mouseout", (e) => {
 
     square.classList.remove("highlight");
 });
-
