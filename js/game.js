@@ -31,11 +31,6 @@ for (let i = 0; i < rows; i++) {
   }
 }
 
-
-
-
-
-
 const resources = {
   grass: "grass", // קרקע
   dirt: "dirt", //אדמה
@@ -76,11 +71,6 @@ function isClassPresent(event) {
   // event.torget
 }
 
-
-
-
-
-
 // mapping
 //variable tool
 let activeTool = null;
@@ -104,7 +94,6 @@ const tools = document.querySelectorAll(".tool");
 
 tools.forEach((tool) => {
   tool.addEventListener("click", () => {
-    
     //אופציה א
     // ביטול כלי (איקס אדום)
     if (tool.classList.contains("cancel")) {
@@ -119,7 +108,6 @@ tools.forEach((tool) => {
       tools.forEach((t) => (t.style.borderColor = "#333"));
       return;
     }
-
 
     // אופציה ב -סימון
     // בחירת כלי
@@ -140,22 +128,16 @@ tools.forEach((tool) => {
   });
 });
 
-
-
-
-
-
-
 // container -האזנה ל
 container.addEventListener("click", (e) => {
   const square = e.target;
   // ווידוא שזה אריח משחק
   if (!square.classList.contains("sky")) return;
 
-  if (!activeTool) {return;}
-  else{
-  const squareType = square.classList[1];
+  if (!activeTool) {
+    return;
   }
+  const squareType = square.classList[1];
 
   // פעולת הסרה - הרחבה
   if (toolMapping[activeTool].includes(squareType)) {
@@ -163,6 +145,7 @@ container.addEventListener("click", (e) => {
   }
 });
 
+// סימון עכבר 
 container.addEventListener("mouseover", (e) => {
   const square = e.target;
   if (!square.classList.contains("sky")) return;
