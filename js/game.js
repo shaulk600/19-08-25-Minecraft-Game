@@ -14,7 +14,7 @@ for (let i = 0; i < rows; i++) {
     // j=column
     for (let j = 0; j < columns; j++) {
         const square = document.createElement("div");
-        square.id = `square- row${i} column${j} num${numIndex}`;
+        square.id = `square-row${i}-column${j}-num${numIndex}`;
 
         if (i < 10) {
             square.classList.add("sky");
@@ -32,8 +32,43 @@ for (let i = 0; i < rows; i++) {
     }
 }
 
+//============================================//
+/*
+this function gets a parameter of array with two elements - row and column
+that represents the index of the top square of the tree's race.
+it fills the squares in tree shape, leaves and race.
+*/
+function crateTree(raceIndex) {
+    const raceRow = raceIndex[0];
+    const raceColumn = raceIndex[1];
+    for (let row = raceRow - 6; row <= raceRow; row++) {
+        let leftSquare = raceColumn; // הריבוע השמאלי לצמצום
+        let rightSquare = raceColumn; // הריבוע הימני לצמצום
+        let secRow = false; // משתנה בוליאני לבדוק שורה ראשונה או שניה לצמצום
+        for (let column = leftSquare; column <= rightSquare; column++) {
+            addLeaveSquare(row, column);
+        }
+        if (secRow) {
+            leftSquare--;
+            rightSquare++;
+        }
+        secRow = !secRow;
+    }
 
+    for (let row = raceRow; row <= 9; row++) {
+        addRaceSquare(row, raceColumn)
+    }
+}
 
+function addLeaveSquare(row, column) {
+
+}
+
+function addRaceSquare(row, column) {
+
+}
+
+//============================================//
 
 const resources = {
     grass: "grass", // קרקע
@@ -86,17 +121,17 @@ const cursorMapping = {
 
 // בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
-  tool.addEventListener("click", () => {
-    
-        if (tool.classList.contains("cancel")) {
-      activeTool = null;
-      container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+    tool.addEventListener("click", () => {
 
-      document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
-      return; 
-    };
-    
-    activeTool = tool.classList[1];
+        if (tool.classList.contains("cancel")) {
+            activeTool = null;
+            container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+
+            document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
+            return;
+        };
+
+        activeTool = tool.classList[1];
 
 
         document.querySelectorAll(".tool").forEach((tool) => {
@@ -117,7 +152,7 @@ document.querySelectorAll(".sky").forEach((square) => {
     square.addEventListener("click", () => {
         if (!activeTool) return;
 
-        const squareType = square.classList[1]; 
+        const squareType = square.classList[1];
 
         if (toolMapping[activeTool].includes(squareType)) {
             square.classList.remove(squareType);
