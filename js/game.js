@@ -30,6 +30,9 @@ for (let i = 0; i < rows; i++) {
         numIndex++;
         container.appendChild(square);
     }
+    numIndex++;
+    container.appendChild(square);
+  }
 }
 
 //============================================//
@@ -70,33 +73,46 @@ function addRaceSquare(row, column) {
 
 //============================================//
 
+
+
 const resources = {
-    grass: "grass", // קרקע
-    dirt: "dirt",  //אדמה
-    rocks: "rocks", // סלעים
-    leaves: "leaves", //עלים
-    race: "race" // גזע
-}
+  grass: "grass", // קרקע
+  dirt: "dirt", //אדמה
+  rocks: "rocks", // סלעים
+  branches: "branches", //עלים
+  tree: "tree", // גזע
+};
 const numResources = {
-    grass: 0,
-    dirt: 0,
-    rocks: 0,
-    leaves: 0,
-    race: 0
-}
+  grass: 0,
+  dirt: 0,
+  rocks: 0,
+  branches: 0,
+  tree: 0,
+};
 
 function addResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
-        numResources.resources++;
+  if (
+    resources == "grass" ||
+    resources == "dirt" ||
+    resources == "rocks" ||
+    resources == "branches" ||
+    resources == "tree"
+  )
+    numResources.resources++;
 }
 function RemovingResources(resources) {
-    if (resources == "grass" || resources == "dirt" || resources == "rocks" || resources == "leaves" || resources == "race")
-        numResources.resources--;
+  if (
+    resources == "grass" ||
+    resources == "dirt" ||
+    resources == "rocks" ||
+    resources == "branches" ||
+    resources == "tree"
+  )
+    numResources.resources--;
 }
 
-function isClassPresent(event) { // event.torget
-
-
+function isClassPresent(event) {
+  // event.torget
 }
 
 
@@ -106,67 +122,95 @@ function isClassPresent(event) { // event.torget
 let activeTool = null;
 
 const toolMapping = {
-    axe: ["tree"], // גרזן: עצים
-    pickaxe: ["rocks"], // מעדר: סלעים
-    shovel: ["dirt", "grass"], // את חפירה: אדמה
-    shears: ["branches"], // מספריים: ענפים
+  axe: ["tree"], // גרזן: עצים
+  pickaxe: ["rocks"], // מעדר: סלעים
+  shovel: ["dirt", "grass"], // את חפירה: אדמה
+  shears: ["branches"], // מספריים: ענפים
 };
 
 const cursorMapping = {
-    axe: "axe-cursor",
-    pickaxe: "pickaxe-cursor",
-    shovel: "shovel-cursor",
-    shears: "shears-cursor",
+  axe: "axe-cursor",
+  pickaxe: "pickaxe-cursor",
+  shovel: "shovel-cursor",
+  shears: "shears-cursor",
 };
 
 // בחירת כלי
-document.querySelectorAll(".tool").forEach((tool) => {
-    tool.addEventListener("click", () => {
 
-        if (tool.classList.contains("cancel")) {
-            activeTool = null;
-            container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+const tools = document.querySelectorAll(".tool");
 
-            document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
-            return;
-        };
+tools.forEach((tool) => {
+  tool.addEventListener("click", () => {
+    
+    //אופציה א
+    // ביטול כלי (איקס אדום)
+    if (tool.classList.contains("cancel")) {
+      activeTool = null;
+      container.classList.remove(
+        "axe-cursor",
+        "pickaxe-cursor",
+        "shovel-cursor",
+        "shears-cursor"
+      );
+      // איפוס גבולות לכל הכלים
+      tools.forEach((t) => (t.style.borderColor = "#333"));
+      return;
+    }
 
-        activeTool = tool.classList[1];
+
+    // אופציה ב -סימון
+    // בחירת כלי
+    activeTool = tool.classList[1];
 
 
-        document.querySelectorAll(".tool").forEach((tool) => {
-            tool.style.borderColor = "#333";
-        });
+    // איפוס גבולות לכל הכלים ואז הדגשת הכלי שנבחר
+    tools.forEach((t) => (t.style.borderColor = "#333"));
+    tool.style.borderColor = "gold";
 
-        tool.style.borderColor = "gold";
-
-
-        container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-        container.classList.add(cursorMapping[activeTool]);
-
-    });
+    // שינוי סמן העכבר בהתאם לכלי
+    container.classList.remove(
+      "axe-cursor",
+      "pickaxe-cursor",
+      "shovel-cursor",
+      "shears-cursor"
+    );
+    container.classList.add(cursorMapping[activeTool]);
+  });
 });
 
-// הסרת משבצת באמצעות הכלי
-document.querySelectorAll(".sky").forEach((square) => {
-    square.addEventListener("click", () => {
-        if (!activeTool) return;
 
-        const squareType = square.classList[1];
 
-        if (toolMapping[activeTool].includes(squareType)) {
-            square.classList.remove(squareType);
-        }
-    });
+// container -האזנה ל
+container.addEventListener("click", (e) => {
+  const square = e.target;
+  // ווידוא שזה אריח משחק
+  if (!square.classList.contains("sky")) return;
 
-    square.addEventListener("mouseover", () => {
-        if (activeTool) {
-            square.classList.add("highlight");
-        }
-    });
 
-    square.addEventListener("mouseout", () => {
-        square.classList.remove("highlight");
-    });
+  if (!activeTool) {return;}
+  else{
+  const squareType = square.classList[1];
+  }
+
+
+  // פעולת הסרה - הרחבה
+  if (toolMapping[activeTool].includes(squareType)) {
+    square.classList.remove(squareType);
+  }
 });
 
+container.addEventListener("mouseover", (e) => {
+  const square = e.target;
+  if (!square.classList.contains("sky")) return;
+
+  if (activeTool) {
+    square.classList.add("highlight");
+  }
+});
+
+container.addEventListener("mouseout", (e) => {
+  const square = e.target;
+  if (!square.classList.contains("sky")) return;
+
+  square.classList.remove("highlight");
+});
