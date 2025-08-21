@@ -14,7 +14,7 @@ for (let i = 0; i < rows; i++) {
     // j=column
     for (let j = 0; j < columns; j++) {
         const square = document.createElement("div");
-        square.id = `square- row${i} column${j} num${numIndex}`;
+        square.id = `square-row${i}-column${j}-num${numIndex}`;
 
         if (i < 10) {
             square.classList.add("sky");
@@ -35,6 +35,27 @@ for (let i = 0; i < rows; i++) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "קליטת המשתנים מה"דיב"-"קאונטר
+const countGrass = document.getElementById("countGrass");
+const countDirt = document.getElementById("countDirt");
+const countRocks = document.getElementById("countRocks");
+const countBranches = document.getElementById("countBranches");
+const countTree = document.getElementById("countTree");
+
+
 const resources = {
     grass: "grass", // קרקע
     dirt: "dirt",  //אדמה
@@ -42,6 +63,7 @@ const resources = {
     branches: "branches", //עלים
     tree: "tree" // גזע
 }
+
 const numResources = {
     grass: 0,
     dirt: 0,
@@ -86,54 +108,64 @@ const cursorMapping = {
 
 // בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
-  tool.addEventListener("click", () => {
-    // ביטול כלי (איקס אדום)
-    if (tool.classList.contains("cancel")) {
-      activeTool = null;
-      container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-      document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
-      return;
-    }
 
-    // בחירת כלי
-    activeTool = tool.classList[1];
 
-    document.querySelectorAll(".tool").forEach((t) => {
-      t.style.borderColor = "#333";
+
+    tool.addEventListener("click", () => {
+        // ביטול כלי (איקס אדום)
+        if (tool.classList.contains("cancel")) {
+            activeTool = null;
+            container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+            document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
+            return;
+        }
+
+        // בחירת כלי
+        activeTool = tool.classList[1];
+
+
+        document.querySelectorAll(".tool").forEach((t) => {
+            t.style.borderColor = "#333";
+        });
+
+        tool.style.borderColor = "gold";
+
+        container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+        container.classList.add(cursorMapping[activeTool]);
     });
-
-    tool.style.borderColor = "gold";
-
-    container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-    container.classList.add(cursorMapping[activeTool]);
-  });
 });
 
 // container -האזנה ל
 container.addEventListener("click", (e) => {
-  const square = e.target;
-  if (!square.classList.contains("sky")) return;
+    const square = e.target;
+    if (!square.classList.contains("sky")) return;
 
-  if (!activeTool) return;
-  const squareType = square.classList[1];
+    if (!activeTool) return;
+    const squareType = square.classList[1];
 
-  if (toolMapping[activeTool].includes(squareType)) {
-    square.classList.remove(squareType);
-  }
+
+    if (toolMapping[activeTool].includes(squareType)) {
+        square.classList.remove(squareType);
+    }
 });
 
-container.addEventListener("mouseover", (e) => {
-  const square = e.target;
-  if (!square.classList.contains("sky")) return;
 
-  if (activeTool) {
-    square.classList.add("highlight");
-  }
+
+
+
+container.addEventListener("mouseover", (e) => {
+    const square = e.target;
+    if (!square.classList.contains("sky")) return;
+
+    if (activeTool) {
+        square.classList.add("highlight");
+    }
 });
 
 container.addEventListener("mouseout", (e) => {
-  const square = e.target;
-  if (!square.classList.contains("sky")) return;
+    const square = e.target;
+    if (!square.classList.contains("sky")) return;
 
-  square.classList.remove("highlight");
+    square.classList.remove("highlight");
 });
+
