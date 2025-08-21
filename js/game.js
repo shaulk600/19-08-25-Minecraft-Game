@@ -87,51 +87,53 @@ const cursorMapping = {
 // בחירת כלי
 document.querySelectorAll(".tool").forEach((tool) => {
   tool.addEventListener("click", () => {
-    
-        if (tool.classList.contains("cancel")) {
+    // ביטול כלי (איקס אדום)
+    if (tool.classList.contains("cancel")) {
       activeTool = null;
       container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-
       document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
-      return; 
-    };
-    
+      return;
+    }
+
+    // בחירת כלי
     activeTool = tool.classList[1];
 
-
-        document.querySelectorAll(".tool").forEach((tool) => {
-            tool.style.borderColor = "#333";
-        });
-
-        tool.style.borderColor = "gold";
-
-
-        container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-        container.classList.add(cursorMapping[activeTool]);
-
+    document.querySelectorAll(".tool").forEach((t) => {
+      t.style.borderColor = "#333";
     });
+
+    tool.style.borderColor = "gold";
+
+    container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
+    container.classList.add(cursorMapping[activeTool]);
+  });
 });
 
-// הסרת משבצת באמצעות הכלי
-document.querySelectorAll(".sky").forEach((square) => {
-    square.addEventListener("click", () => {
-        if (!activeTool) return;
+// container -האזנה ל
+container.addEventListener("click", (e) => {
+  const square = e.target;
+  if (!square.classList.contains("sky")) return;
 
-        const squareType = square.classList[1]; 
+  if (!activeTool) return;
+  const squareType = square.classList[1];
 
-        if (toolMapping[activeTool].includes(squareType)) {
-            square.classList.remove(squareType);
-        }
-    });
-
-    square.addEventListener("mouseover", () => {
-        if (activeTool) {
-            square.classList.add("highlight");
-        }
-    });
-
-    square.addEventListener("mouseout", () => {
-        square.classList.remove("highlight");
-    });
+  if (toolMapping[activeTool].includes(squareType)) {
+    square.classList.remove(squareType);
+  }
 });
 
+container.addEventListener("mouseover", (e) => {
+  const square = e.target;
+  if (!square.classList.contains("sky")) return;
+
+  if (activeTool) {
+    square.classList.add("highlight");
+  }
+});
+
+container.addEventListener("mouseout", (e) => {
+  const square = e.target;
+  if (!square.classList.contains("sky")) return;
+
+  square.classList.remove("highlight");
+});
