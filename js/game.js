@@ -14,7 +14,7 @@ for (let i = 0; i < rows; i++) {
     // j=column
     for (let j = 0; j < columns; j++) {
         const square = document.createElement("div");
-        square.id = `square- row${i} column${j} num${numIndex}`;
+        square.id = `square-row${i}-column${j}-num${numIndex}`;
 
         if (i < 10) {
             square.classList.add("sky");
@@ -85,25 +85,28 @@ const cursorMapping = {
 };
 
 // בחירת כלי
-document.querySelectorAll(".tool").forEach((tool) => {
+const tools = document.querySelectorAll(".tool");
+
+tools.forEach((tool) => {
   tool.addEventListener("click", () => {
     // ביטול כלי (איקס אדום)
     if (tool.classList.contains("cancel")) {
       activeTool = null;
       container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
-      document.querySelectorAll(".tool").forEach((t) => (t.style.borderColor = "#333"));
+      
+      // איפוס גבולות לכל הכלים
+      tools.forEach((t) => t.style.borderColor = "#333");
       return;
     }
 
     // בחירת כלי
     activeTool = tool.classList[1];
 
-    document.querySelectorAll(".tool").forEach((t) => {
-      t.style.borderColor = "#333";
-    });
-
+    // איפוס גבולות לכל הכלים ואז הדגשת הכלי שנבחר
+    tools.forEach((t) => t.style.borderColor = "#333");
     tool.style.borderColor = "gold";
 
+    // שינוי סמן העכבר בהתאם לכלי
     container.classList.remove("axe-cursor", "pickaxe-cursor", "shovel-cursor", "shears-cursor");
     container.classList.add(cursorMapping[activeTool]);
   });
