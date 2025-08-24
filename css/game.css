@@ -130,11 +130,16 @@ body {
   width: 70px;
 }
 
-.savedPart div{
+.savedPart div {
   display: flex;
   align-items: center;
   margin: 7px;
+  border: 2px solid #333;      
+  padding: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
+
 .savedPart img{
   width: 45px;
   height: 45px;
@@ -147,3 +152,34 @@ body {
   font-family: 'Press Start 2P', monospace; 
   color: white;
 }
+
+.savedPart div:hover {
+  border-color: lightgreen;
+  transform: scale(1.05);
+}
+
+.savedPart div.selected {
+  border-color: gold;
+  box-shadow: 0 0 10px gold;
+}
+
+.grass-cursor {
+  cursor: url("../img/cursor-grass.png") 16 16, auto;
+}
+
+.dirt-cursor {
+  cursor: url("../img/cursor-dirt.png") 16 16, auto;
+}
+
+.rocks-cursor {
+  cursor: url("../img/cursor-stone.png") 16 16, auto;
+}
+
+.branches-cursor {
+  cursor: url("../img/cursor-oak-leaves.png") 16 16, auto;
+}
+
+.tree-cursor {
+  cursor: url("../img/cursor-oak-log.png") 16 16, auto;
+}
+
